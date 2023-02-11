@@ -16,9 +16,7 @@ form.addEventListener("submit", (event) => {
   }
   loadingIndicator.style.display = "block";
   fetch(
-    `https://tel-eye-api.vercel.app/api/contacts?q=${phoneNumbers
-      .split(",")
-      .map((n) => `+${code}${n}`)}&code=${code}`
+    `https://tel-eye-api.vercel.app/api/contacts?q=${phoneNumbers}&code=${code}`
   )
     .then((response) => response.json())
     .then((data) => {
@@ -30,6 +28,7 @@ form.addEventListener("submit", (event) => {
         tr.innerHTML = `
           <td>${contact.name}</td>
           <td>${contact.phone}</td>
+          <td>${contact.accuracy}</td>
         `;
         contactData.appendChild(tr);
       });
